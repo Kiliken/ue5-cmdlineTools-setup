@@ -1,12 +1,8 @@
 
+curl.exe -L "https://github.com/Kiliken/ue5-cmdlineTools-setup/archive/refs/heads/main.tar.gz" -o "$(gl)\main.tar.gz" --progress-bar
 
-$wc = New-Object Net.WebClient
-Add-Type -AssemblyName System.IO.Compression.FileSystem
+tar -xzf "$(gl)\main.tar.gz" -C "$(gl)"
 
-$wc.DownloadFile("https://github.com/Kiliken/ue5-cmdlineTools-setup/archive/refs/heads/main.zip", "$(gl)\main.zip")
-
-[System.IO.Compression.ZipFile]::ExtractToDirectory("$(gl)\main.zip", gl)
-
-Move-Item "$(gl)\ue5-cmdlineTools-setup-main\*" gl -Force
+Move-Item "$(gl)\ue5-cmdlineTools-setup-main\*" "$(gl)" -Force
 Remove-Item "$(gl)\ue5-cmdlineTools-setup-main" -Recurse -Force
-Remove-Item "$(gl)\main.zip" -Force
+Remove-Item "$(gl)\main.tar.gz" -Force
