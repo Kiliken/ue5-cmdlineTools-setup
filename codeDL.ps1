@@ -1,8 +1,10 @@
 
-curl.exe -L "https://github.com/Kiliken/ue5-cmdlineTools-setup/archive/refs/heads/main.tar.gz" -o "$(gl)\main.tar.gz" --progress-bar
+$dest = (Get-Location).Path
 
-tar -xzf "$(gl)\main.tar.gz" -C "$(gl)"
+curl.exe -L "https://github.com/Kiliken/ue5-cmdlineTools-setup/archive/refs/heads/main.tar.gz" -o "$($dest)\main.tar.gz" --progress-bar
 
-Move-Item "$(gl)\ue5-cmdlineTools-setup-main\*" "$(gl)" -Force
-Remove-Item "$(gl)\ue5-cmdlineTools-setup-main" -Recurse -Force
-Remove-Item "$(gl)\main.tar.gz" -Force
+tar -xzf "$($dest)\main.tar.gz" -C "$($dest)"
+
+Move-Item "$($dest)\ue5-cmdlineTools-setup-main\*" "$($dest)" -Force
+Remove-Item "$($dest)\ue5-cmdlineTools-setup-main" -Recurse -Force
+Remove-Item "$($dest)\main.tar.gz" -Force
